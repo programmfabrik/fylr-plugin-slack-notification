@@ -15,6 +15,7 @@ Github has an overview page to get a list of [all releases](https://github.com/p
 - `slack_webhook_url`: a valid slack-webhook-url
 - `slack_cooldown_minutes`: int
 - `slack_buffer_enabled`: `true` oder `false`
+- `slack_allowed_users`: a list of fylr-users, which are allowed use this endpoint
 
 Explanations:
 

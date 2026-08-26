@@ -23,6 +23,13 @@ base_config:
         type: bool
         default: true
         position: 2
+      slack_allowed_users:
+        type: table
+        position: 3
+        fields:
+          - name: slack_allowed_user
+            type: user
+            position: 0
 
 extensions:
   slack_notification:

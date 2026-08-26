@@ -4,3 +4,4 @@ server.config.parameter.system.slack_notification.slack_webhook_url.label,Slack 
 server.config.parameter.system.slack_notification.slack_cooldown_minutes.label,Slack Cooldown (in Minuten),Slack Cooldown (in minutes)
 server.config.parameter.system.slack_notification.slack_buffer_enabled.label,Nachrichten-Buffer aktivieren?,Use message-buffer?
 server.config.parameter.system.slack_notification.slack_buffer_enabled.checkbox,Ja,Yes
+server.config.parameter.system.slack_notification.slack_allowed_users.label,Erlaubte Nutzer (welche senden dürfen),Allowed users (which are allowed to send)

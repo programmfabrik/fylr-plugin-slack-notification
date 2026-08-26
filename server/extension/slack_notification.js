@@ -28,6 +28,16 @@ function throwError(error, description) {
 const slack_webhook_url = info.config?.plugin['slack-notification']?.config['slack_notification']?.slack_webhook_url || false;
 const slack_cooldown_minutes = info.config?.plugin['slack-notification']?.config['slack_notification']?.slack_cooldown_minutes;
 const slack_buffer_enabled = info.config?.plugin['slack-notification']?.config['slack_notification']?.slack_buffer_enabled || false;
+let slack_allowed_user_ids = [];
+if(info.config?.plugin['slack-notification']?.config['slack_notification']?.slack_allowed_users) {
+    let usersInfo = info.config.plugin['slack-notification'].config['slack_notification'].slack_allowed_users;
+    slack_allowed_user_ids = usersInfo.map((user) => user.slack_allowed_user.user._id);
+}
+
+// check if plugins token is from a valid user
+if(! slack_allowed_user_ids.includes(info?.api_user.user._id)) {
+    throwError("slack-notification-plugin", "Request from user, which is not allowed");
+}
 
 // cancel if no webhook-url is given
 if(!slack_webhook_url) {
