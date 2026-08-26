@@ -1,0 +1,41 @@
+plugin:
+  name: slack-notification
+  version: "1"
+  l10n: l10n/slack-notification.csv
+  displayname:
+    de-DE: slack-notification
+    en-US: slack-notification
+
+base_url_prefix: "webfrontend"
+
+base_config:
+  - name: slack_notification
+    group: slack_notification
+    parameters:
+      slack_webhook_url:
+        type: text
+        position: 0
+      slack_cooldown_minutes:
+        type: int
+        default: 60
+        position: 1
+      slack_buffer_enabled:
+        type: bool
+        default: true
+        position: 2
+
+extensions:
+  slack_notification:
+    exec:
+      service: "node"
+      commands:
+        - prog: "node"
+          stdin:
+            type: "body"
+          stdout:
+            type: "body"
+          args:
+            - type: "value"
+              value: "%_exec.pluginDir%/server/extension/slack_notification.js"
+            - type: "value"
+              value: "%info.json%"

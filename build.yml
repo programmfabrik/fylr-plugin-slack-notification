@@ -1,0 +1,13 @@
+# Build configuration for fylr-build-plugin — the explicit build description.
+# Delivered files are listed here; "check" (runs with every build) warns when
+# a manifest reference is missing from the build folder.
+# All features: https://github.com/programmfabrik/fylr-build-plugin
+
+server:
+  install:
+  - l10n/slack-notification.csv
+  bundles:
+    - out: server/extension/slack_notification.js
+      sources:
+      - server/extension/slack_notification.js
+      - server/extension/sendSlackAlert.js
