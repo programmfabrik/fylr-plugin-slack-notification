@@ -1,21 +1,29 @@
-# slack-notifications
+# fylr-plugin-slack-notification
 
-TODO: describe what this fylr plugin does.
+This plugin provides slack-notification via a slack-webhook-url. For example CustomDataTypePlugin-Updater can use this custom api endpoint to send messages to a slack-channel in case of errors.
 
-## Building
+## installation
 
-Built by [fylr-build-plugin](https://github.com/programmfabrik/fylr-build-plugin) —
-see there for how a fylr plugin is structured and what it can offer; the
-Makefile is a thin shim, run `make` for the target list. For development,
-point the fylr server at the build folder in `fylr.yml`:
+The latest version of this plugin can be found [here](https://github.com/programmfabrik/fylr-plugin-slack-notification/releases/latest/download/fylr-plugin-slack-notification.zip).
 
-```yaml
-plugin:
-    paths+:
-        - ../slack-notifications/build
-```
+The ZIP can be downloaded and installed using the plugin manager, or used directly (recommended).
 
-## Releasing
+Github has an overview page to get a list of [all releases](https://github.com/programmfabrik/fylr-plugin-slack-notification/releases/).
 
-A manager publishes a release on the GitHub release page (tag `vX.Y.Z`); the
-workflow builds the plugin zip and attaches it to the release.
+## Konfiguration
+
+- `slack_webhook_url`: a valid slack-webhook-url
+- `slack_cooldown_minutes`: int
+- `slack_buffer_enabled`: `true` oder `false`
+
+Explanations:
+
+If the buffer is enabled, messages are buffered and send in bulk, when cooldown is over. If cooldown is bigger zero and buffer is disabled, messages are skipped and deleted, till cooldowntime is over.
+
+## API
+
+Other applications can call the endpoint.
+
+Example: 
+
+`/api/v1/plugin/extension/slack-notification/slack_notification?access_token=ory_foobar&source_instance=fylr-example&source_name=myBestPlugin&message=error%20occured%20OMG`
