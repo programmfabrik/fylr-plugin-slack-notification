@@ -27,3 +27,13 @@ Other applications can call the endpoint.
 Example: 
 
 `/api/v1/plugin/extension/slack-notification/slack_notification?access_token=ory_foobar&source_instance=fylr-example&source_name=myBestPlugin&message=error%20occured%20OMG`
+
+## Implementation
+
+You can integrate the slack-endpoint for example like this
+
+```    
+try {
+    var slackUrl = instance_name.replace(/\/+$/, '') + "/api/v1/plugin/extension/slack-notification/slack_notification?access_token=" + access_token + "&source_instance=" + instance_name + "&source_name=" + plugin_name + "&message=" + encodeURIComponent(errorMessage);
+    await fetch(slackUrl, { signal: AbortSignal.timeout(2000) }).catch(function() {});
+} catch (e) {}```
