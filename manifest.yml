@@ -13,7 +13,7 @@ base_config:
     group: slack_notification
     parameters:
       slack_webhook_url:
-        type: text
+        type: secret
         position: 0
       slack_cooldown_minutes:
         type: int
